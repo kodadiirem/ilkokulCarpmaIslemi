@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<body onload="baslangic()">
+  	<div id="sayiSonuc">0</div>
+  	<div id="sayi">
+  		<div id="sayiSol">0</div>
+  		<div id="isaret">X</div>
+  		<div id="sayiSag">0</div>
+  		<div id="esittir">=</div>
+  		
+  	</div>
+  	<input type="number" id="giri" value="">
+  	<div id="numarator">
+  		<button id="bir" onclick="document.getElementById('giri').value += 1">1</button>
+  		<button id="iki" onclick="document.getElementById('giri').value += 2">2</button>
+  		<button id="uc" onclick="document.getElementById('giri').value += 3">3</button><br>
+  		<button id="dort" onclick="document.getElementById('giri').value += 4">4</button>
+  		<button id="bes" onclick="document.getElementById('giri').value += 5">5</button>
+  		<button id="alti" onclick="document.getElementById('giri').value += 6">6</button><br>
+  		<button id="yedi" onclick="document.getElementById('giri').value += 7">7</button>
+  		<button id="sekiz" onclick="document.getElementById('giri').value += 8">8</button>
+  		<button id="dokuz" onclick="document.getElementById('giri').value += 9">9</button><br>
+  		<button id="sifir" onclick="document.getElementById('giri').value += 0">0</button>
+  		<button type="button" onclick="giris()">Giriş</button>
+  		<button type="button" onclick="sil()">Sil</button>
+  	</div>
+  	<div id="skor">
+  		<div id="puanMetin">Puan: </div>
+  		<div id="puan">0</div>
+  	</div>
+
+  <script type="text/javascript">
+  		var sayiSol, sayiSag, sonuc, skorString, skorInt;
+		function baslangic() {
+		    document.getElementById("sayiSol").innerHTML = Math.floor(Math.random() * 11);
+		    sayiSol = document.getElementById("sayiSol").innerHTML;
+		    document.getElementById("sayiSag").innerHTML = Math.floor(Math.random() * 11);
+		    sayiSag = document.getElementById("sayiSag").innerHTML;
+		    hesaplar()
+		}
+		function hesaplar(){
+			sonuc = parseInt(sayiSol) * parseInt(sayiSag);
+		    document.getElementById("sayiSonuc").innerHTML = sonuc;
+		}
+		function giris() {
+			hesaplar()
+			if (document.getElementById("giri").value == sonuc) {
+				skorString = document.getElementById("puan").innerHTML;
+				skorInt = parseInt(skorString);
+				skorInt += 10;
+				document.getElementById("puan").innerHTML = skorInt;
+				baslangic()
+				sil()
+			}
+			else{
+				hesaplar()
+				if (parseInt(document.getElementById("puan").innerHTML) > 0) {
+					skorString = document.getElementById("puan").innerHTML;
+					skorInt = parseInt(skorString);
+					skorInt -= 10;
+					document.getElementById("puan").innerHTML = skorInt;
+				}
+				baslangic()
+				sil()
+			}
+		}
+		function sil() {
+			document.getElementById("giri").value = "";
+		}
+  </script>
+
+  <style type="text/css">
+  	body{
+  		text-align: center;
+  	}
+    #sayi, #skor{
+    	display: flex;
+    	justify-content: center;
+    }
+    #bir, #iki, #uc, #dort, #bes, #alti, #yedi, #sekiz, #dokuz, #sifir{
+    	margin: 10px;
+    	font-size: 56px;
+    	font-family: Comic Sans Ms;
+    	width: 90px;
+    	height: 90px;
+    }
+    #giri{
+    	width: 310px;
+    	height: 90px;
+    	font-size: 56px;
+    }
+  </style>
+</body>
+</html>
